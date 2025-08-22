@@ -1,4 +1,3 @@
-````markdown
 [![](https://jitpack.io/v/Tamil-Fuzionest/BizSub-SDK.svg)](https://jitpack.io/#Tamil-Fuzionest/BizSub-SDK)
 
 # 🚖 BizSub SDK – Taxina Subscription Flow (Android)
