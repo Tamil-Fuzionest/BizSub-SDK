@@ -1,7 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 
 android {
+    namespace "com.fuzionest.bizsub"
     compileSdkVersion 34
 
     defaultConfig {
@@ -12,22 +15,23 @@ android {
         consumerProguardFiles 'consumer-rules.pro'
     }
 
+    // Tell Gradle to allow publishing the release variant
     publishing {
         singleVariant("release")
     }
 }
 
-configurations.maybeCreate("default")
-artifacts.add("default", file('libs/bizsub-1.0.0.aar'))
-
 publishing {
     publications {
         release(MavenPublication) {
-            groupId = "com.fuzionest"
-            artifactId = "bizsub"
-            version = "1.0.0"
+            groupId = "com.github.Tamil-Fuzionest"   // required by JitPack
+            artifactId = "BizSub-SDK"
+            version = "1.0.1"
 
-            artifact(file('libs/bizsub-1.0.0.aar'))
+            // Attach the Android release component
+            afterEvaluate {
+                from components.release
+            }
         }
     }
 }
