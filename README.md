@@ -1,91 +1,69 @@
+````markdown
 [![](https://jitpack.io/v/Tamil-Fuzionest/BizSub-SDK.svg)](https://jitpack.io/#Tamil-Fuzionest/BizSub-SDK)
 
 # 🚖 BizSub SDK – Taxina Subscription Flow (Android)
 
-BizSub is an **Android SDK** designed to simplify the **subscription and payment flow** for **Taxina-powered taxi applications**.
-It provides a ready-to-use subscription screen, handles the Razorpay payment flow, and makes it easy for developers to integrate subscription plans into their apps.
-
----
-
-## 📦 Features
-
-* 🔑 Secure integration with **Razorpay** (supports orderId, amount, etc.)
-* 🎨 Ready-made **subscription activity UI** (customizable theme support)
-* 📱 Designed for **Taxi apps subscription plans** (e.g., drivers paying for app usage)
-* ⚡ Lightweight & easy to integrate
+BizSub is an **Android SDK** designed to simplify the **subscription flow** for **Taxina-powered taxi applications**.  
+It provides a ready-to-use subscription screen and makes it easy for developers to integrate subscription plans into their apps.
 
 ---
 
 ## 🚀 Installation
 
-### Option 1: From Maven Central / GitHub Packages
+Add **JitPack** in your `settings.gradle` or `build.gradle`:
 
 ```gradle
 repositories {
+    google()
     mavenCentral()
-    // or
-    maven { url = uri("https://maven.pkg.github.com/fuzionest/BizSub-SDK") }
+    maven { url "https://jitpack.io" }
 }
+````
 
+Add the dependency:
+
+```gradle
 dependencies {
-    implementation("com.fuzionest:bizsub:1.0.0")
+    implementation("com.github.Tamil-Fuzionest:BizSub-SDK:1.0.1")
 }
 ```
+
+---
 
 ## 🛠️ Usage
 
-Launch the **BizSub subscription activity** from your app:
+Configure the SDK and launch the **BizSub subscription view** from your app:
 
 ```kotlin
-import com.fuzionest.bizsub.SubscriptionActivity
-
-// Example: Start subscription flow
-val subscription = SubscriptionActivity(context)
-subscription.startPayment(
-    keyId = "rzp_test_key",          // Razorpay key
-    orderId = "order_123",           // Order ID from your backend
-    amount = "1000",                 // Amount in INR (paise format if required)
-    planName = "Driver Gold Plan",   // Subscription plan name
-    vehicleNo = "TN01AB1234",        // Driver’s vehicle number
-    phone = "+911234567890"          // Driver’s phone number
+// Step 1: Configure the SDK
+BizSub.config(
+    SubscriptionSdkConfig(
+        vehicleId = "TN44MM5435" // Replace with driver’s actual vehicle number
+    )
 )
+
+// Step 2: Show the subscription screen
+BizSub.showSubscriptionView(this@MainActivity) { result ->
+    when (result.status) {
+        SubscriptionStatus.SUCCESS,
+        SubscriptionStatus.FAILURE ->
+            Toast.makeText(myTextView.context, result.message, Toast.LENGTH_SHORT).show()
+
+        SubscriptionStatus.CLOSED ->
+            Toast.makeText(this, "Closed by user", Toast.LENGTH_SHORT).show()
+
+        SubscriptionStatus.ERROR,
+        SubscriptionStatus.INVALID_VEHICLE_ID ->
+            Toast.makeText(
+                myTextView.context,
+                "Error: ${result.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+    }
+}
 ```
 
-On **successful payment**, BizSub will return the Razorpay payment ID which you can verify with your backend.
-
----
-
-## 📂 Example Project
-
-We’ve included a **sample Android project** in the [`example/`](example/) folder.
-You can open it in Android Studio and run directly to see how **BizSub** integrates with a taxi driver app.
-
----
-
-## 🎨 Customization
-
-* You can **customize the theme and colors** of the subscription page.
-* Hide or show UI elements (like user icon, labels) as per your brand.
-
----
-
-## 📖 Developer Flow
-
-1. Add BizSub dependency
-2. Configure your backend to generate **Razorpay orderId**
-3. Call `SubscriptionActivity.startPayment()` with the orderId and driver details
-4. Verify payment on your backend
-5. Enable subscription features in your Taxi app
-
----
-
-## 🧑‍💻 Contributing
-
-Contributions are welcome!
-
-1. Fork this repo
-2. Create a feature branch
-3. Submit a Pull Request 🚀
+That’s it 🎉 — BizSub will open the subscription UI and return the result via callback.
 
 ---
 
