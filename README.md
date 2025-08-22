@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/Tamil-Fuzionest/BizSub-SDK.svg)](https://jitpack.io/#Tamil-Fuzionest/BizSub-SDK)
+
 # 🚖 BizSub SDK – Taxina Subscription Flow (Android)
 
 BizSub is an **Android SDK** designed to simplify the **subscription and payment flow** for **Taxina-powered taxi applications**.
