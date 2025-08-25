@@ -5,12 +5,9 @@ plugins {
 group = "com.github.Tamil-Fuzionest"
 version = "1.0.2"
 
-configurations.maybeCreate("default")
-
-artifacts {
-    // Replace with actual file name of your SDK build output
-    archives file("libs/BizSub-SDK-1.0.2.jar")
-}
+// Point to your prebuilt SDK jar/aar
+def artifactFile = file("libs/BizSub-SDK-1.0.2.jar")
+// OR for AAR: file("libs/BizSub-SDK-1.0.2.aar")
 
 publishing {
     publications {
@@ -19,7 +16,10 @@ publishing {
             artifactId = "BizSub-SDK"
             version = "1.0.2"
 
-            artifact(file("libs/BizSub-SDK-1.0.2.jar"))
+            artifact(artifactFile)
         }
+    }
+    repositories {
+        mavenLocal() // optional, for testing
     }
 }
