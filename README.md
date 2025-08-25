@@ -66,6 +66,39 @@ That’s it 🎉 — BizSub will open the subscription UI and return the result 
 
 ---
 
+## 🎨 Customizing Status Bar Color
+
+By default, **BizSub** will use your app’s theme-defined status bar color.
+If you want to override it, you can pass a **custom status bar color** in the SDK config.
+
+### Example: Using an app color resource
+
+```kotlin
+BizSub.config(
+    SubscriptionSdkConfig(
+        vehicleId = "TN44MM5435",
+        statusBarColorRes = R.color.myStatusBarColor // Your custom color resource
+    )
+)
+```
+
+### Example: Using a resolved color
+
+```kotlin
+val customColor = ContextCompat.getColor(this, R.color.myStatusBarColor)
+BizSub.config(
+    SubscriptionSdkConfig(
+        vehicleId = "TN44MM5435",
+        statusBarColor = customColor
+    )
+)
+```
+
+* If a **light color** (e.g. white) is set, BizSub automatically switches to **dark icons** so they remain visible.
+* If no color is provided, BizSub **inherits the host app’s default status bar color**.
+
+---
+
 ## 📜 License
 
 This project is licensed under the **MIT License**.
