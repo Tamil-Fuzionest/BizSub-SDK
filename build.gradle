@@ -12,6 +12,7 @@ publishing {
             artifactId = "BizSub-SDK"
             version = "1.0.5"
 
+            // Point to the prebuilt AAR
             artifact("libs/BizSub-SDK-1.0.5.aar")
         }
     }
