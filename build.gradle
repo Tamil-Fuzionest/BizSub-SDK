@@ -3,28 +3,31 @@ plugins {
 }
 
 group = "com.github.Tamil-Fuzionest"
-version = "1.0.9"
+version = "1.0.11"
 
 publishing {
     publications {
         release(MavenPublication) {
             groupId = "com.github.Tamil-Fuzionest"
             artifactId = "BizSub-SDK"
-            version = "1.0.9"
+            version = "1.0.11"
 
-            artifact("libs/BizSub-SDK-v1.0.9.aar")
-            artifact("libs/BizSub-SDK-v1.0.9.pom")
-            artifact("libs/BizSub-SDK-v1.0.9.module")
-
+            artifact("libs/BizSub-SDK-v1.0.11.aar")
             pom.withXml {
-                asNode().appendNode('packaging', 'aar')
+                asNode().appendNode("dependencies").with {
+                    appendNode("dependency").with {
+                        appendNode("groupId", "com.razorpay")
+                        appendNode("artifactId", "checkout")
+                        appendNode("version", "1.6.41")
+                        appendNode("scope", "compile")
+                    }
+                }
             }
         }
     }
-
     repositories {
         maven {
-            url = uri("$buildDir/repo")
+            url = layout.buildDirectory.dir("publications/maven")
         }
     }
 }
