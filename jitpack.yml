@@ -1,8 +1,4 @@
 jdk:
   - openjdk17
-
 before_install:
-  - echo "Using custom JitPack build config"
-
-install:
-  - ./gradlew publishToMavenLocal
+  - echo "Building BizSub-SDK AAR for JitPack"
