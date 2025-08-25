@@ -12,10 +12,20 @@ publishing {
             artifactId = "BizSub-SDK"
             version = "1.0.9"
 
-            // Point to the prebuilt AAR
             artifact("libs/BizSub-SDK-v1.0.9.aar")
             artifact("libs/BizSub-SDK-v1.0.9.pom")
             artifact("libs/BizSub-SDK-v1.0.9.module")
+
+            // mark the AAR as the primary artifact
+            pom.withXml {
+                asNode().appendNode('packaging', 'aar')
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri(layout.buildDirectory.dir("repo"))   // 👈 publish to ./build/repo
         }
     }
 }
