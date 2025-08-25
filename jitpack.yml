@@ -2,4 +2,7 @@ jdk:
   - openjdk17
 
 before_install:
-  - ./gradlew clean
+  - echo "Using custom JitPack build config"
+
+install:
+  - ./gradlew publishToMavenLocal
