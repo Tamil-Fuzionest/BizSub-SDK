@@ -23,7 +23,7 @@ Add the dependency:
 
 ```gradle
 dependencies {
-    implementation("com.github.Tamil-Fuzionest:BizSub-SDK:1.0.1")
+    implementation("com.github.Tamil-Fuzionest:BizSub-SDK:<latest>")
 }
 ```
 
