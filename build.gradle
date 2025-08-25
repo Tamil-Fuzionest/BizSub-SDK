@@ -3,17 +3,19 @@ plugins {
 }
 
 group = "com.github.Tamil-Fuzionest"
-version = "1.0.8"
+version = "1.0.9"
 
 publishing {
     publications {
         release(MavenPublication) {
             groupId = "com.github.Tamil-Fuzionest"
             artifactId = "BizSub-SDK"
-            version = "1.0.8"
+            version = "1.0.9"
 
             // Point to the prebuilt AAR
-            artifact("libs/BizSub-SDK-1.0.8.aar")
+            artifact("libs/BizSub-SDK-v1.0.9.aar")
+            artifact("libs/BizSub-SDK-v1.0.9.pom")
+            artifact("libs/BizSub-SDK-v1.0.9.module")
         }
     }
 }
