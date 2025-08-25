@@ -22,7 +22,6 @@ publishing {
         }
     }
 
-    // 👇 tell Gradle to actually publish to a repo folder
     repositories {
         maven {
             url = uri("$buildDir/repo")
