@@ -3,16 +3,16 @@ plugins {
 }
 
 group = "com.github.Tamil-Fuzionest"
-version = "1.0.17"
+version = "1.0.18"
 
 publishing {
     publications {
         release(MavenPublication) {
             groupId = "com.github.Tamil-Fuzionest"
             artifactId = "BizSub-SDK"
-            version = "1.0.17"
+            version = "1.0.18"
 
-            artifact("libs/BizSub-SDK-v1.0.17.aar")
+            artifact("libs/BizSub-SDK-v1.0.18.aar")
             pom.withXml {
                 asNode().appendNode("dependencies").with {
                     appendNode("dependency").with {
