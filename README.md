@@ -60,6 +60,26 @@ BizSub.showSubscriptionView(this@MainActivity) { result ->
             ).show()
     }
 }
+
+// Step 3: To check the subscription logs
+BizSub.showSubscriptionLogs(this@MainActivity) { result ->
+    when (result.status) {
+        SubscriptionStatus.SUCCESS,
+        SubscriptionStatus.FAILURE ->
+            Toast.makeText(myTextView.context, result.message, Toast.LENGTH_SHORT).show()
+
+        SubscriptionStatus.CLOSED ->
+            Toast.makeText(this, "Closed by user", Toast.LENGTH_SHORT).show()
+
+        SubscriptionStatus.ERROR,
+        SubscriptionStatus.INVALID_VEHICLE_ID ->
+            Toast.makeText(
+                myTextView.context,
+                "Error: ${result.message}",
+                Toast.LENGTH_SHORT
+            ).show()
+    }
+}
 ```
 
 That’s it 🎉 — BizSub will open the subscription UI and return the result via callback.
