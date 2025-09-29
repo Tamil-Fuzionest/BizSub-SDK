@@ -26,44 +26,18 @@ dependencies {
     implementation("com.github.Tamil-Fuzionest:BizSub-SDK:<latest>")
 }
 ```
-## BizSub SDK Integration
-
-The BizSub SDK allows you to manage subscriptions in your Android app. It supports two modes:
-
-1. **Live Mode** – for production/live users.
-2. **Demo Mode** – for testing and development.
 
 ---
 
-## Environment Modes
-
-| Mode           | Function                                      | Method to Use            |
-|----------------|-----------------------------------------------|------------------------- |
-| **Live**       | Processes real subscriptions for actual users | `BizSub.config()`        |
-| **Demo**       | Test integration without affecting live data  | `BizSub.configDemo()`    |
-
-> **Tip:** Always use sandbox mode for development and testing. Switch to live mode only for production releases.
-
----
-
-## 🛠️ Usages
+## 🛠️ Usage
 
 Configure the SDK and launch the **BizSub subscription view** from your app:
 
 ```kotlin
 // Step 1: Configure the SDK
-// LIVE MODE
 BizSub.config(
     SubscriptionSdkConfig(
-        vehicleId = "TN44MM5435",
-        languageCode='en'
-    )
-)
-// Demo Mode
-BizSub.configDemo(
-    SubscriptionSdkConfig(
-        vehicleId = "TN44MM5435",
-        languageCode='en'
+        vehicleId = "TN44MM5435" // Replace with driver’s actual vehicle number
     )
 )
 
